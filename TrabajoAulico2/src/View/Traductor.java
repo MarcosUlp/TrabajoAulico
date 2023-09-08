@@ -5,11 +5,16 @@
  */
 package View;
 
+import java.util.TreeMap;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Marcos
  */
 public class Traductor extends javax.swing.JFrame {
+
+    private static TreeMap<String, String> palabras = new TreeMap<String, String>();
 
     /**
      * Creates new form Traductor
@@ -41,6 +46,11 @@ public class Traductor extends javax.swing.JFrame {
         jLabel2.setText("Español-Ingles");
 
         jtTraducir.setText("Traducir");
+        jtTraducir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtTraducirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,7 +72,7 @@ public class Traductor extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jtTraducir)
-                .addGap(151, 151, 151))
+                .addGap(161, 161, 161))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -82,6 +92,20 @@ public class Traductor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jtTraducirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtTraducirActionPerformed
+        try {
+            String español = jtEspañol.getText();
+            if (español.isBlank()) {
+                JOptionPane.showMessageDialog(this, "No debe haber campos vacíos");
+            } else {
+                jtIngles.setText("");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error de ingreso de datos", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+    }//GEN-LAST:event_jtTraducirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,4 +149,8 @@ public class Traductor extends javax.swing.JFrame {
     private javax.swing.JTextField jtIngles;
     private javax.swing.JButton jtTraducir;
     // End of variables declaration//GEN-END:variables
+ public void cargarPalabras() {
+        palabras.put("", "Hola");
+    }
+
 }
